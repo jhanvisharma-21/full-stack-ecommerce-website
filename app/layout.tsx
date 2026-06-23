@@ -3,7 +3,6 @@ import Footer from "@/components/Footer";
 import "./globals.css";
 import { CartProvider } from "./context/CartContext";
 import { Toaster } from "react-hot-toast";
-
 import { FilterProvider } from "./context/FilterContext";
 import { WishlistProvider } from "./context/WishlistContext";
 
@@ -17,25 +16,21 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
- 
-   return (
-  <html lang="en">
-    <body className="bg-gray-100">
-      <Toaster
-        position="top-right"
-        reverseOrder={false}
-      />
+  return (
+    <html lang="en">
+      <body className="bg-gray-100">
+        <Toaster position="top-right" reverseOrder={false} />
 
-      <FilterProvider>
-        <WishlistProvider>
-          <CartProvider>
-            <Header />
-            <main>{children}</main>
-            <Footer />
-          </CartProvider>
-        </WishlistProvider>
-      </FilterProvider>
-    </body>
-  </html>
-);
+        <FilterProvider>
+          <WishlistProvider>
+            <CartProvider>
+              <Header />
+              <main>{children}</main>
+              <Footer />
+            </CartProvider>
+          </WishlistProvider>
+        </FilterProvider>
+      </body>
+    </html>
+  );
 }
