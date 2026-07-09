@@ -82,8 +82,9 @@ if (res.ok) {
   router.push("/order-success");
 }
   } catch (error) {
-    alert("Server Error");
-  }
+  console.error("Login Error:", error);
+  toast.error("Unable to connect to the server");
+}
 };
 
   return (
