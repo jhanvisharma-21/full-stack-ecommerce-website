@@ -109,7 +109,7 @@ export default function RegisterPage() {
 
         </form>
 
-        <p className="text-center mt-5">
+               <p className="text-center mt-5">
           Already have an account?{" "}
           <span
             onClick={() => router.push("/login")}
@@ -122,3 +122,4 @@ export default function RegisterPage() {
       </div>
     </div>
   );
+}
