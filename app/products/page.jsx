@@ -6,6 +6,7 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { useSearchParams } from "next/navigation";
 import { useFilter } from "../context/FilterContext";
+console.log(products);
 
 const Productpage = () => {
   const {
@@ -84,10 +85,12 @@ const Productpage = () => {
 
       {/* Product Grid */}
 
+{/* Product Grid */}
+
 {filteredProducts.length === 0 ? (
   <div className="bg-white rounded-xl shadow p-16 text-center mt-10">
     <h2 className="text-3xl font-bold text-gray-700">
-      No Products Found 
+      No Products Found
     </h2>
 
     <p className="text-gray-500 mt-3">
@@ -96,9 +99,7 @@ const Productpage = () => {
   </div>
 ) : (
   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-  {filteredProducts.map((item) => (
-  <ProductItem key={item.id} item={item} />
-))}
+    <ProductItem products={filteredProducts} />
   </div>
 )}
 
