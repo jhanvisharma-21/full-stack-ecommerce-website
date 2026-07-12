@@ -8,14 +8,15 @@ export default function UserMenu() {
   const [user, setUser] = useState(null);
 
   const router = useRouter();
+useEffect(() => {
+  const savedUser = localStorage.getItem("user");
 
-  useEffect(() => {
-    const savedUser = localStorage.getItem("user");
+  console.log("Saved User:", savedUser);
 
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
-    }
-  }, []);
+  if (savedUser) {
+    setUser(JSON.parse(savedUser));
+  }
+}, []);
 
   const logout = () => {
     localStorage.removeItem("token");

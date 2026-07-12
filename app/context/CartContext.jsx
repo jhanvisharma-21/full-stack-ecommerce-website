@@ -6,13 +6,17 @@ const CartContext = createContext(undefined);
 
 export function CartProvider({ children }) {
   // Initialize state safely. Checks localStorage if running in the browser.
-  const [cart, setCart] = useState(() => {
-    if (typeof window !== "undefined") {
-      const savedCart = localStorage.getItem("cartopia_cart");
-      return savedCart ? JSON.parse(savedCart) : [];
-    }
-    return [];
-  });
+const [cart, setCart] = useState([]);
+useEffect(() => {
+  const savedCart = localStorage.getItem("cartopia_cart");
+
+  if (savedCart) {
+    setCart(JSON.parse(savedCart));
+  }
+}, []);
+useEffect(() => {
+  localStorage.setItem("cartopia_cart", JSON.stringify(cart));
+}, [cart]);
 
   // Automatically update localStorage whenever the cart changes
   useEffect(() => {

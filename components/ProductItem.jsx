@@ -1,6 +1,5 @@
 "use client";
-
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useWishlist } from "@/app/context/WishlistContext";
@@ -17,6 +16,11 @@ const ProductItem = ({ products = [] }) => {
     addToCart,
     isInCart,
   } = useCart();
+  const [mounted, setMounted] = useState(false);
+
+useEffect(() => {
+  setMounted(true);
+}, []);
 
   return (
     <>
@@ -85,13 +89,15 @@ const ProductItem = ({ products = [] }) => {
 
           {/* Add To Cart */}
           <button
-            onClick={() => addToCart(item)}
-            className="mt-4 w-full border border-green-500 text-green-600 py-2 rounded-lg hover:bg-green-500 hover:text-white transition"
-          >
-            {isInCart(item.id)
-              ? "ADDED TO CART"
-              : "ADD TO CART"}
-          </button>
+  onClick={() => addToCart(item)}
+  className="mt-4 w-full border border-green-500 text-green-600 py-2 rounded-lg hover:bg-green-500 hover:text-white transition"
+>
+  {!mounted
+    ? "ADD TO CART"
+    : isInCart(item.id)
+    ? "ADDED TO CART"
+    : "ADD TO CART"}
+</button>
         </div>
       ))}
     </>
